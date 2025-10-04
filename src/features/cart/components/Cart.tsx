@@ -1,11 +1,11 @@
 import { useSelector, useDispatch } from "react-redux";
-import type { RootState } from "../store/store";
+import type { RootState } from "@/store";
 import {
   removeFromCart,
   clearCart,
   increaseQty,
   decreaseQty,
-} from "../store/cartSlice";
+} from "@/features/cart";
 
 export default function Cart() {
   const items = useSelector((state: RootState) => state.cart.items);
