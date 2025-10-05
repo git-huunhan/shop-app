@@ -119,6 +119,7 @@ export default function Products() {
               ))
             : filteredProducts.map((p) => (
                 <ProductCard
+                  key={p.id}
                   product={p}
                   handleAddToCart={() => dispatch(addToCart(p))}
                 />

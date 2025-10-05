@@ -12,7 +12,7 @@ export default function ProductCard({
   handleAddToCart,
 }: ContainerProps) {
   return (
-    <div key={product.id} className="card-base">
+    <div className="card-base">
       <Link to={`/products/${product.id}`}>
         <img
           src={product.thumbnail}

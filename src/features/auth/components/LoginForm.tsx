@@ -1,5 +1,6 @@
 import { login } from "@/features/auth";
 import { useAppDispatch } from "@/store/hooks";
+import type { User } from "@/types";
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
@@ -10,14 +11,14 @@ export default function LoginForm() {
   const navigate = useNavigate();
   const location = useLocation();
   // if redirected here, location.state?.from?.pathname may exist
-  const from = (location.state as any)?.from?.pathname || "/products";
+  const from = location.state?.from?.pathname || "/products";
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
     const users = JSON.parse(localStorage.getItem("users") || "[]");
     const found = users.find(
-      (u: any) => u.email === form.email && u.password === form.password
+      (u: User) => u.email === form.email && u.password === form.password
     );
     if (!found) {
       setError("Invalid credentials");

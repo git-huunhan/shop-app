@@ -3,6 +3,7 @@ import { logout } from "@/features/auth";
 import { setCategory } from "@/features/filter";
 import { setSearch } from "@/features/search";
 import type { RootState } from "@/store";
+import type { Category } from "@/types";
 import { useEffect, useState } from "react";
 import { FaGlobe, FaQuestionCircle, FaSearch, FaUser } from "react-icons/fa";
 import { FaCartShopping } from "react-icons/fa6";
@@ -17,7 +18,7 @@ export default function NavBar() {
   const search = useSelector((state: RootState) => state.search.query);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [categories, setCategories] = useState<string[]>([]);
+  const [categories, setCategories] = useState<Category[]>([]);
 
   const handleLogout = () => {
     dispatch(logout());
@@ -113,12 +114,11 @@ export default function NavBar() {
           <div className="flex flex-1 items-center justify-around gap-16 ml-16 mr-16">
             <div className="flex flex-1 gap-4">
               <select
-                value={categories}
                 onChange={(e) => dispatch(setCategory(e.target.value))}
                 className="px-3 py-2 text-sm focus:outline-gray-200 border border-gray-300 rounded-xl"
               >
                 <option value="all">All Categories</option>
-                {categories.map((c: any) => (
+                {categories.map((c: Category) => (
                   <option key={c.slug} value={c.slug}>
                     {c.name}
                   </option>

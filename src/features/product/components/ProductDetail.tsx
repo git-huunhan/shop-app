@@ -14,15 +14,7 @@ const ProductDetail = () => {
     fetch(`https://dummyjson.com/products/${id}`)
       .then((res) => res.json())
       .then((data) => {
-        const mapped = {
-          id: data.id,
-          title: data.title,
-          price: data.price,
-          description: data.description,
-          thumbnail: data.thumbnail,
-          category: data.category,
-        };
-        setProduct(mapped);
+        setProduct(data);
         setLoading(false);
       });
   }, [id]);
