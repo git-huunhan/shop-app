@@ -1,0 +1,5 @@
+@layer components {
+  .container-main {
+    @apply container mx-auto pt-4 pb-4;
+  }
+}

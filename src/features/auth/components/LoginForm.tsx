@@ -1,7 +1,7 @@
-import { useState } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
-import { useAppDispatch } from "@/store/hooks";
 import { login } from "@/features/auth";
+import { useAppDispatch } from "@/store/hooks";
+import { useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export default function LoginForm() {
   const [form, setForm] = useState({ email: "", password: "" });

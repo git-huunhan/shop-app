@@ -1,9 +1,9 @@
-export { default as authReducer } from "./cartSlice";
 export {
   addToCart,
-  removeFromCart,
+  default as authReducer,
   clearCart,
-  increaseQty,
   decreaseQty,
+  increaseQty,
+  removeFromCart,
 } from "./cartSlice";
 export { default as Cart } from "./components/Cart";

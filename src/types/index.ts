@@ -4,6 +4,8 @@ export interface Product {
   price: number;
   description: string;
   thumbnail: string;
+  rating: number;
+  stock: number;
 }
 
 export interface User {

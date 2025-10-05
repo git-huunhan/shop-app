@@ -1,8 +1,8 @@
+import { login } from "@/features/auth";
+import { useAppDispatch } from "@/store/hooks";
+import type { User } from "@/types/index";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAppDispatch } from "@/store/hooks";
-import { login } from "@/features/auth";
-import type { User } from "@/types/index";
 
 export default function SignUp() {
   const [form, setForm] = useState({

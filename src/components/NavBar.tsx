@@ -1,13 +1,13 @@
-import { NavLink, useNavigate } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import type { RootState } from "@/store";
+import logo from "@/assets/logo.svg";
 import { logout } from "@/features/auth";
-import { useEffect, useState } from "react";
-import logo from "@/assets/logo.png";
-import { FaGlobe, FaQuestionCircle, FaSearch, FaUser } from "react-icons/fa";
-import { setSearch } from "@/features/search";
 import { setCategory } from "@/features/filter";
+import { setSearch } from "@/features/search";
+import type { RootState } from "@/store";
+import { useEffect, useState } from "react";
+import { FaGlobe, FaQuestionCircle, FaSearch, FaUser } from "react-icons/fa";
 import { FaCartShopping } from "react-icons/fa6";
+import { useDispatch, useSelector } from "react-redux";
+import { NavLink, useNavigate } from "react-router-dom";
 
 export default function NavBar() {
   const cartCount = useSelector((state: RootState) =>
@@ -100,11 +100,11 @@ export default function NavBar() {
         </div>
 
         <div className="flex justify-between mt-3">
-          <div className="flex items-center">
+          <div className="flex items-center gap-2">
             <img
               src={logo}
               alt="Lumos Logo"
-              className="h-10 w-10 object-contain"
+              className="h-8 w-8 object-contain"
             />
 
             <span className="font-bold text-xl text-brand">Lumos</span>

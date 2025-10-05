@@ -1,4 +1,6 @@
 @import "tailwindcss";
+@import "./styles/components.css";
+@import "./styles/layout.css";
 
 @theme {
   --font-sans: "Quicksand", sans-serif;
@@ -14,17 +16,19 @@
 }
 
 @layer components {
-  .btn {
-    @apply px-4 py-2 text-white rounded-lg transition cursor-pointer;
+  .rating {
+    @apply flex items-center gap-1;
   }
 
-  .btn-primary {
-    @apply bg-brand hover:bg-brand-dark;
+  .star {
+    @apply text-yellow-400
   }
 
-  .card {
-    @apply rounded-xl shadow-md p-4 bg-white hover:shadow-xl transition;
+  .star-empty {
+    @apply text-yellow-400
   }
+
+
 }
 
 html {
@@ -35,7 +39,6 @@ body {
   background-color: var(--color-brand-background);
 }
 
-/* Scrollbar đẹp hơn */
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;

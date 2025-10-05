@@ -1,0 +1,17 @@
+@layer components {
+  .card-base {
+    @apply rounded-xl p-4 bg-white hover:shadow-xl transition flex flex-col gap-3;
+  }
+  
+  .card-image {
+    @apply w-full h-40 object-contain rounded-lg;
+  }
+
+  .card-title {
+    @apply line-clamp-2 text-base leading-snug flex-1 font-semibold text-gray-800 min-h-[3rem];
+  }
+
+  .card-body-container {
+    @apply flex flex-col gap-1;
+  }
+}

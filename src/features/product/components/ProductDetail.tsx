@@ -1,8 +1,8 @@
-import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { useDispatch } from "react-redux";
 import { addToCart } from "@/features/cart";
 import type { Product } from "@/types";
+import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { useParams } from "react-router-dom";
 
 const ProductDetail = () => {
   const { id } = useParams<{ id: string }>();

@@ -1,9 +1,9 @@
-import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import type { RootState } from "@/store";
-import { useDispatch, useSelector } from "react-redux";
+import Container from "@/components/Container";
 import { addToCart } from "@/features/cart";
-import { FaStar } from "react-icons/fa";
+import type { RootState } from "@/store";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import ProductCard from "./ProductCard";
 
 interface Product {
   id: number;
@@ -64,84 +64,67 @@ export default function Products() {
   }
 
   return (
-    <div className="flex justify-center items-center">
-      <div className="container mx-auto pt-4 pb-4">
-        <div className="grid grid-cols-12 bg-white rounded-2xl p-4">
-          <div className="flex flex-col gap-4 col-span-2">
-            <div className="price-filter">
-              <input
-                type="number"
-                placeholder="Min Price"
-                value={minPrice}
-                onChange={(e) => setMinPrice(Number(e.target.value))}
-              />
-              <span> - </span>
-              <input
-                type="number"
-                placeholder="Max Price"
-                value={maxPrice}
-                onChange={(e) => setMaxPrice(Number(e.target.value))}
-              />
-            </div>
-
-            <div className="sort-filter">
-              <select value={sort} onChange={(e) => setSort(e.target.value)}>
-                <option value="">Sort By</option>
-                <option value="price-asc">Price: Low → High</option>
-                <option value="price-desc">Price: High → Low</option>
-                <option value="name-asc">Name: A → Z</option>
-                <option value="name-desc">Name: Z → A</option>
-              </select>
-            </div>
+    <Container>
+      <div className="grid grid-cols-12 bg-white rounded-2xl p-4">
+        <div className="flex flex-col gap-4 col-span-2">
+          <div className="price-filter">
+            <input
+              type="number"
+              placeholder="Min Price"
+              value={minPrice}
+              onChange={(e) => setMinPrice(Number(e.target.value))}
+            />
+            <span> - </span>
+            <input
+              type="number"
+              placeholder="Max Price"
+              value={maxPrice}
+              onChange={(e) => setMaxPrice(Number(e.target.value))}
+            />
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2 col-span-10">
-            {loading
-              ? Array.from({ length: 10 }).map((_, i) => (
-                  <div key={i} className="animate-pulse card flex flex-col">
-                    <div className="w-full h-60 bg-gray-200 rounded-lg mb-3"></div>
-                    <div className="h-4 bg-gray-200 rounded w-3/4 mb-2"></div>
-                    <div className="h-4 bg-gray-200 rounded w-1/2"></div>
-                  </div>
-                ))
-              : filteredProducts.map((p) => (
-                  <div key={p.id} className="card flex flex-col">
-                    <Link to={`/products/${p.id}`}>
-                      <img
-                        src={p.thumbnail}
-                        alt={p.title}
-                        className="w-full h-60 object-contain rounded-lg mb-3"
-                      />
-                      <h3 className="text-lg font-semibold text-gray-800">
-                        {p.title}
-                      </h3>
-                    </Link>
-
-                    <p className="mt-2 text-[#ff929b] font-bold">${p.price}</p>
-
-                    <div className="flex items-center justify-between mt-2">
-                      <div className="flex items-center gap-1">
-                        <FaStar className="text-yellow-400" />
-                        <span className="text-sm text-gray-600">
-                          {p.rating}
-                        </span>
-                      </div>
-                      <span className="text-sm text-gray-500">
-                        Stock: {p.stock}
-                      </span>
-                    </div>
-
-                    <button
-                      className="btn btn-primary mt-3"
-                      onClick={() => dispatch(addToCart(p))}
-                    >
-                      Add to Cart
-                    </button>
-                  </div>
-                ))}
+          <div className="sort-filter">
+            <select value={sort} onChange={(e) => setSort(e.target.value)}>
+              <option value="">Sort By</option>
+              <option value="price-asc">Price: Low → High</option>
+              <option value="price-desc">Price: High → Low</option>
+              <option value="name-asc">Name: A → Z</option>
+              <option value="name-desc">Name: Z → A</option>
+            </select>
           </div>
         </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2 col-span-10">
+          {loading
+            ? Array.from({ length: 10 }).map((_, i) => (
+                <div key={i} className="card flex flex-col gap-3 animate-pulse">
+                  <div className="w-full h-40 bg-gray-200 rounded-lg" />
+
+                  <div className="space-y-2">
+                    <div className="h-4 bg-gray-200 rounded w-3/4"></div>
+                    <div className="h-4 bg-gray-200 rounded w-1/2"></div>
+                  </div>
+
+                  <div className="flex flex-col gap-1 mt-1">
+                    <div className="h-6 bg-gray-200 rounded w-1/4"></div>
+
+                    <div className="flex justify-between items-center">
+                      <div className="h-4 bg-gray-200 rounded w-16"></div>
+                      <div className="h-4 bg-gray-200 rounded w-20"></div>
+                    </div>
+                  </div>
+
+                  <div className="h-10 bg-gray-200 rounded-lg"></div>
+                </div>
+              ))
+            : filteredProducts.map((p) => (
+                <ProductCard
+                  product={p}
+                  handleAddToCart={() => dispatch(addToCart(p))}
+                />
+              ))}
+        </div>
       </div>
-    </div>
+    </Container>
   );
 }
